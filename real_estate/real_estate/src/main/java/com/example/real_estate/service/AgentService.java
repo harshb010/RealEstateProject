@@ -35,6 +35,7 @@ public class AgentService implements CrudServices<Agent, Integer> {
 		existingAgent.setLastName(updatedAgent.getLastName());
 		existingAgent.setContact(updatedAgent.getContact());
 		existingAgent.setEmail(updatedAgent.getEmail());
+		existingAgent.setPassword(updatedAgent.getPassword());
 		return agentRepo.save(existingAgent);
 	}
 

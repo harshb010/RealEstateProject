@@ -31,8 +31,7 @@ public class Agent {
 	private String licenseNo;
 	
 	//@Size(max =10)
-	@Column(unique = true)
-	@NotBlank
+
 	private Long contact;
 	
 	@Column(unique = true)
@@ -48,8 +47,8 @@ public class Agent {
 	}
 
 	public Agent(int id, @NotBlank @Size(max = 50) String firstName, @NotBlank @Size(max = 50) String lastName,
-			@NotBlank @Size(max = 50) String licenseNo, @Size(max = 10) Long contact,
-			@Email @NotBlank @Size(max = 100) String email) {
+			@NotBlank @Size(max = 50) String licenseNo, Long contact,
+			@Email @NotBlank @Size(max = 100) String email, String password) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -57,6 +56,7 @@ public class Agent {
 		this.licenseNo = licenseNo;
 		this.contact = contact;
 		this.email = email;
+		this.password=password;
 	}
 
 	public int getId() {
@@ -107,10 +107,17 @@ public class Agent {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	@Override
 	public String toString() {
 		return "Agent [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", licenseNo=" + licenseNo
-				+ ", contact=" + contact + ", email=" + email + "]";
+				+ ", contact=" + contact + ", email=" + email + " password=" +password+"]";
 	}
 
 	

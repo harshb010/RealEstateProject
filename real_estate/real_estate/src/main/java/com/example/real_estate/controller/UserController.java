@@ -1,4 +1,5 @@
 package com.example.real_estate.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,38 +13,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.real_estate.dto.ErrorResponse;
-import com.example.real_estate.entities.Agent;
-import com.example.real_estate.service.AgentService;
-
+import com.example.real_estate.entities.User;
+import com.example.real_estate.service.UserService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/agent")
-public class AgentController {
+@RequestMapping("/user")
+public class UserController {
 
 	@Autowired
-	private AgentService agentService;
+	private UserService userService;
 
 	@PostMapping("/add")
-	public ResponseEntity<?> registerdAgent(@RequestBody Agent agent) {
-		Agent createdAgent = agentService.create(agent);
-		return new ResponseEntity<>(createdAgent, HttpStatus.CREATED);
+	public ResponseEntity<?> registerdUser(@RequestBody User user) {
+		User createdUser = userService.create(user);
+		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<?> getAllAgents() {
+	public ResponseEntity<?> getAllUsers() {
 		try {
-			return new ResponseEntity<>(agentService.fetchAll(), HttpStatus.OK);
+			return new ResponseEntity<>(userService.fetchAll(), HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(new ErrorResponse("Agent Fetching is failed", e.getMessage()),
+			return new ResponseEntity<>(new ErrorResponse("User Fetching is failed", e.getMessage()),
 					HttpStatus.BAD_REQUEST);
 		}
 
 	}
-	@GetMapping("/{agentId}")
-	public ResponseEntity<?> getUserById(@PathVariable("agentId") Integer id) {
+	@GetMapping("/{userId}")
+	public ResponseEntity<?> getUserById(@PathVariable("userId") Integer id) {
 		try {
-			return  ResponseEntity.ok(agentService.fetchById(id));
+			return  ResponseEntity.ok(userService.fetchById(id));
 			
 		} catch (Exception e) {
 			
@@ -53,13 +53,13 @@ public class AgentController {
 		}
 	}
 
-	@PutMapping("/update/{agentId}")
-	public ResponseEntity<?> updateuserById(@PathVariable("agentId") Integer id,
-			@RequestBody Agent updateUser) {
+	@PutMapping("/update/{userId}")
+	public ResponseEntity<?> updateuserById(@PathVariable("userId") Integer id,
+			@RequestBody User updateUser) {
 		try {
-			Agent existingUser=agentService.fetchById(id);
+			User existingUser=userService.fetchById(id);
 			
-			return  ResponseEntity.ok(agentService.update(updateUser, existingUser));
+			return  ResponseEntity.ok(userService.update(updateUser, existingUser));
 			
 		} catch (Exception e) {
 			
@@ -67,11 +67,11 @@ public class AgentController {
 			return new ResponseEntity<>(errorResponce,HttpStatus.BAD_REQUEST);
 		}
 	}
-	@DeleteMapping("/delete/{agentId}")
-	public ResponseEntity<?>deleteUserById(@PathVariable ("agentId") Integer id)
+	@DeleteMapping("/delete/{userId}")
+	public ResponseEntity<?>deleteUserById(@PathVariable ("userId") Integer id)
 	{ try {
-		Agent existingUser=agentService.fetchById(id);
-		return ResponseEntity.ok(agentService.delete(existingUser));
+		User existingUser=userService.fetchById(id);
+		return ResponseEntity.ok(userService.delete(existingUser));
 				
 	} catch (Exception e) {
 

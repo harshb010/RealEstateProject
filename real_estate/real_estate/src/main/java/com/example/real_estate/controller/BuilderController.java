@@ -1,4 +1,5 @@
 package com.example.real_estate.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,70 +13,70 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.real_estate.dto.ErrorResponse;
-import com.example.real_estate.entities.Agent;
-import com.example.real_estate.service.AgentService;
+import com.example.real_estate.entities.Builder;
+import com.example.real_estate.service.BuilderService;
 
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/agent")
-public class AgentController {
+@RequestMapping("/builder")
+public class BuilderController {
 
 	@Autowired
-	private AgentService agentService;
+	private BuilderService builderService;
 
 	@PostMapping("/add")
-	public ResponseEntity<?> registerdAgent(@RequestBody Agent agent) {
-		Agent createdAgent = agentService.create(agent);
-		return new ResponseEntity<>(createdAgent, HttpStatus.CREATED);
+	public ResponseEntity<?> registerdBuilder(@RequestBody Builder builder) {
+		Builder createdUser = builderService.create(builder);
+		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<?> getAllAgents() {
+	public ResponseEntity<?> getAllBuilders() {
 		try {
-			return new ResponseEntity<>(agentService.fetchAll(), HttpStatus.OK);
+			return new ResponseEntity<>(builderService.fetchAll(), HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(new ErrorResponse("Agent Fetching is failed", e.getMessage()),
+			return new ResponseEntity<>(new ErrorResponse("Builder Fetching is failed", e.getMessage()),
 					HttpStatus.BAD_REQUEST);
 		}
 
 	}
-	@GetMapping("/{agentId}")
-	public ResponseEntity<?> getUserById(@PathVariable("agentId") Integer id) {
+	@GetMapping("/{builderId}")
+	public ResponseEntity<?> getUserById(@PathVariable("builderId") Integer id) {
 		try {
-			return  ResponseEntity.ok(agentService.fetchById(id));
+			return  ResponseEntity.ok(builderService.fetchById(id));
 			
 		} catch (Exception e) {
 			
 			ErrorResponse errorResponce=
-		    new ErrorResponse("User Fetching is failed", e.getMessage());
+		    new ErrorResponse("Builder Fetching is failed", e.getMessage());
 			return new ResponseEntity<>(errorResponce,HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	@PutMapping("/update/{agentId}")
-	public ResponseEntity<?> updateuserById(@PathVariable("agentId") Integer id,
-			@RequestBody Agent updateUser) {
+	@PutMapping("/update/{builderId}")
+	public ResponseEntity<?> updateBuilderById(@PathVariable("builderId") Integer id,
+			@RequestBody Builder updateUser) {
 		try {
-			Agent existingUser=agentService.fetchById(id);
+			Builder existingUser=builderService.fetchById(id);
 			
-			return  ResponseEntity.ok(agentService.update(updateUser, existingUser));
+			return  ResponseEntity.ok(builderService.update(updateUser, existingUser));
 			
 		} catch (Exception e) {
 			
-			ErrorResponse errorResponce= new ErrorResponse("User updation is failed", e.getMessage());
+			ErrorResponse errorResponce= new ErrorResponse("Builder updation is failed", e.getMessage());
 			return new ResponseEntity<>(errorResponce,HttpStatus.BAD_REQUEST);
 		}
 	}
-	@DeleteMapping("/delete/{agentId}")
-	public ResponseEntity<?>deleteUserById(@PathVariable ("agentId") Integer id)
+	@DeleteMapping("/delete/{builderId}")
+	public ResponseEntity<?>deleteBuilderById(@PathVariable ("builderId") Integer id)
 	{ try {
-		Agent existingUser=agentService.fetchById(id);
-		return ResponseEntity.ok(agentService.delete(existingUser));
+		Builder existingUser=builderService.fetchById(id);
+		return ResponseEntity.ok(builderService.delete(existingUser));
 				
 	} catch (Exception e) {
 
-		ErrorResponse errorResponce= new ErrorResponse("User deletion is failead", e.getMessage());
+		ErrorResponse errorResponce= new ErrorResponse("Builder deletion is failead", e.getMessage());
 		return new ResponseEntity<>(errorResponce,HttpStatus.BAD_REQUEST);
 		
 	}
@@ -100,3 +101,5 @@ public class AgentController {
 //		
 //	}
 }
+
+

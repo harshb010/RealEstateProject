@@ -15,6 +15,10 @@ import jakarta.persistence.Table;
 @Table(name = "listing")
 public class ListingType {
 
+	public enum propertyType{
+		RESIDENTIAL,COMMERCIAL,INDUSTRIAL
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -29,18 +33,22 @@ public class ListingType {
 	
 	@Enumerated(EnumType.STRING)
 	private Status status; //e.g. Active
-
+	
+	@Enumerated(EnumType.STRING)
+	private propertyType properties;
+	
 	public ListingType() {
 		super();
 	}
 
-	public ListingType(int id, Agent agent, Property property, String listingDate, Status status) {
+	public ListingType(int id, Agent agent, Property property, String listingDate, Status status,propertyType properties) {
 		super();
 		this.id = id;
 		this.agent = agent;
 		this.property = property;
 		this.listingDate = listingDate;
 		this.status = status;
+		this.properties= properties;
 	}
 
 	public int getId() {
@@ -83,10 +91,18 @@ public class ListingType {
 		this.status = status;
 	}
 
+	public propertyType getProperties() {
+		return properties;
+	}
+
+	public void setPropertyType(propertyType properties) {
+		this.properties = properties;
+	}
+
 	@Override
 	public String toString() {
 		return "ListingType [id=" + id + ", agent=" + agent + ", property=" + property + ", listingDate=" + listingDate
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", Properties= "+properties+"]";
 	}
 	
 	

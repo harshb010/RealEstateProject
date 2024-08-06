@@ -26,8 +26,8 @@ public class User {
 	@Size(max=50)
 	private String lastName;
 	
-	@Size(max =10)
-	@Column(unique = true)
+//	@Size(max =10)
+//	@Column(unique = true)
 	private Long contact;
 	
 	@Column(unique = true)
@@ -43,7 +43,7 @@ public class User {
 	}
 
 	public User(int id, @NotBlank @Size(max = 50) String firstName, @NotBlank @Size(max = 50) String lastName,
-			@Size(max = 10) Long contact, @Email @NotBlank @Size(max = 100) String email, String password) {
+		 Long contact, @Email @NotBlank @Size(max = 100) String email, String password) {
 		super();
 		this.id = id;
 		this.firstName = firstName;

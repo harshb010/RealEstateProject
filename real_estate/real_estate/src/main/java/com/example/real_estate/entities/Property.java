@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="property")
@@ -26,7 +27,7 @@ public class Property {
 		}
 
 	  public enum Status{
-			ACTIVE, UNDER_CONTRACT, SOLD
+			ACTIVE, UNDER_CONTRACT, CLOSED
 		}
 	 
 	  
@@ -38,23 +39,27 @@ public class Property {
 	private String streetAddress; 
 	
 	@NotBlank
-	private String city;
+	public String city;
 	
-	@NotBlank
+	@NotNull
 	private int zipcode;
 	
 	@NotBlank
 	private String state;
 	
 	 @Enumerated(EnumType.STRING)
-	 @NotBlank
+	 @NotNull
 	 private PropertyType propertyType;
 	 
 	 @Enumerated(EnumType.STRING)
-	 @NotBlank
+	 @NotNull
 	 private ListingType listingType;
 	 
-	 @NotBlank
+	 @Enumerated(EnumType.STRING)
+	  @NotNull
+	  private Status status;
+	 
+	 @NotNull
 	 private BigDecimal price;
 	 
 	 @Column(name = "lot_size")
@@ -72,10 +77,6 @@ public class Property {
 
 	  @Column(columnDefinition = "TEXT")
 	    private String photos;
-
-	  @Enumerated(EnumType.STRING)
-	  @NotBlank
-	  private Status status;
 	  
 	  @Column(name = "agent_id")
 	  private int agentId;

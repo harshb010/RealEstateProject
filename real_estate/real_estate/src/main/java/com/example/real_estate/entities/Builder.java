@@ -30,8 +30,8 @@ public class Builder {
 	@Size(max=50)
 	private String licenseNo;
 	
-	@Size(max =10)
-	@Column(unique = true)
+//	@Size(max =10)
+//	@Column(unique = true)
 	private Long contact;
 	
 	@Column(unique = true)
@@ -51,7 +51,7 @@ public class Builder {
 	}
 
 	public Builder(int id, @NotBlank @Size(max = 50) String firstName, @NotBlank @Size(max = 50) String lastName,
-			@NotBlank @Size(max = 50) String licenseNo, @Size(max = 10) Long contact,
+			@NotBlank @Size(max = 50) String licenseNo, Long contact,
 			@Email @NotBlank @Size(max = 100) String email, @NotBlank String password, @NotBlank String businessName) {
 		super();
 		this.id = id;
