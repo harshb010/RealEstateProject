@@ -1,7 +1,10 @@
 package com.example.real_estate.entities;
 
-import com.example.real_estate.entities.Property.Status;
 
+import java.time.LocalDateTime;
+
+
+import com.example.real_estate.entities.Property.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,7 +32,7 @@ public class ListingType {
 	@ManyToOne
 	private Property property;
 	
-	private String listingDate; //date when the property was listed
+	private LocalDateTime listingDate; //date when the property was listed
 	
 	@Enumerated(EnumType.STRING)
 	private Status status; //e.g. Active
@@ -41,7 +44,7 @@ public class ListingType {
 		super();
 	}
 
-	public ListingType(int id, Agent agent, Property property, String listingDate, Status status,propertyType properties) {
+	public ListingType(int id, Agent agent, Property property, LocalDateTime listingDate, Status status,propertyType properties) {
 		super();
 		this.id = id;
 		this.agent = agent;
@@ -75,11 +78,11 @@ public class ListingType {
 		this.property = property;
 	}
 
-	public String getListingDate() {
+	public LocalDateTime getListingDate() {
 		return listingDate;
 	}
 
-	public void setListingDate(String listingDate) {
+	public void setListingDate(LocalDateTime listingDate) {
 		this.listingDate = listingDate;
 	}
 

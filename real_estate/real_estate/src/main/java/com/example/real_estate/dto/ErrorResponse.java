@@ -2,10 +2,14 @@ package com.example.real_estate.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ErrorResponse {
 
 	private  String Msg;
 	private String errorDetails;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate timestamp;
 	
 	public ErrorResponse() {

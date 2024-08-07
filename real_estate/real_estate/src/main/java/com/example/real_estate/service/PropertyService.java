@@ -42,7 +42,7 @@ public class PropertyService implements CrudServices<Property, Integer> {
 		existingProperty.setLotSize(updatedProperty.getLotSize());
 		existingProperty.setPhotos(updatedProperty.getPhotos());
 		existingProperty.setPrice(updatedProperty.getPrice());
-		existingProperty.setPropertyType(updatedProperty.getPropertyType());
+//		existingProperty.setpropertyType(updatedProperty.getPropertyType());
 		existingProperty.setState(updatedProperty.getState());
 		existingProperty.setStatus(updatedProperty.getStatus());
 		existingProperty.setStreetAddress(updatedProperty.getStreetAddress());

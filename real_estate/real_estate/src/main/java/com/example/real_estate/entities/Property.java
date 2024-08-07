@@ -16,10 +16,10 @@ import jakarta.validation.constraints.NotNull;
 @Table(name="property")
 public class Property {
 
-	 public enum PropertyType {
-
-			RESIDENTIAL,COMMERCIAL,INDUSTRIAL
-		}
+//	 public enum PropertyType {
+//
+//			RESIDENTIAL,COMMERCIAL,INDUSTRIAL
+//		}
 
 		public enum ListingType {
 			
@@ -47,9 +47,9 @@ public class Property {
 	@NotBlank
 	private String state;
 	
-	 @Enumerated(EnumType.STRING)
-	 @NotNull
-	 private PropertyType propertyType;
+//	 @Enumerated(EnumType.STRING)
+//	 @NotNull
+//	 private PropertyType propertyType;
 	 
 	 @Enumerated(EnumType.STRING)
 	 @NotNull
@@ -87,7 +87,7 @@ public class Property {
 	}
 
 	public Property(int propertyId, @NotBlank String streetAddress, @NotBlank String city, @NotBlank int zipcode,
-			@NotBlank String state, PropertyType propertyType, ListingType listingType, @NotBlank BigDecimal price,
+			@NotBlank String state, ListingType listingType, @NotBlank BigDecimal price,
 			BigDecimal lotSize, BigDecimal buildingSize, Integer bedrooms, Integer bathrooms, Integer yearBuilt,
 			String photos, Status status, int agentId) {
 		super();
@@ -96,7 +96,7 @@ public class Property {
 		this.city = city;
 		this.zipcode = zipcode;
 		this.state = state;
-		this.propertyType = propertyType;
+//		this.propertyType = propertyType;
 		this.listingType = listingType;
 		this.price = price;
 		this.lotSize = lotSize;
@@ -149,13 +149,13 @@ public class Property {
 		this.state = state;
 	}
 
-	public PropertyType getPropertyType() {
-		return propertyType;
-	}
-
-	public void setPropertyType(PropertyType propertyType) {
-		this.propertyType = propertyType;
-	}
+//	public PropertyType getPropertyType() {
+//		return propertyType;
+//	}
+//
+//	public void setPropertyType(PropertyType propertyType) {
+//		this.propertyType = propertyType;
+//	}
 
 	public ListingType getListingType() {
 		return listingType;
